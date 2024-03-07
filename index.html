@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Project - Food Recipes</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-white text-gray-900">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-8">Welcome to Food Recipes</h1>
+        <div class="flex justify-center space-x-4">
+            <a href="#" id="vegBtn"
+                class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Veg</a>
+            <a href="#" id="nonVegBtn"
+                class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Non-Veg</a>
+        </div>
+        <div id="recipeContainer" class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        <div id="recipeDetails" class="hidden mt-8">
+            <button id="backBtn"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Back</button>
+            <div id="recipeDetailContent" class="mt-4"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('vegBtn').addEventListener('click', function (event) {
+            event.preventDefault();
+            renderRecipes(vegRecipes);
+        });
+
+        document.getElementById('nonVegBtn').addEventListener('click', function (event) {
+            event.preventDefault();
+            renderRecipes(nonVegRecipes);
+        });
+
+        document.getElementById('backBtn').addEventListener('click', function (event) {
+            event.preventDefault();
+            document.getElementById('recipeDetails').classList.add('hidden');
+            document.getElementById('recipeContainer').classList.remove('hidden');
+        });
+
+        // Dummy data
+        const vegRecipes = [{
+            name: "Veggie Pizza",
+            image: "https://cdn.loveandlemons.com/wp-content/uploads/2023/02/vegetarian-pizza.jpg",
+            recipe: "Pizza dough – Look for store-bought dough in the refrigerated section of your grocery store, or make your own dough! Tip: Homemade pizza dough freezes well. Make a double batch, and stash half in the freezer for your next pizza night!<br>Cornmeal – For stretching the dough.<br>Pizza sauce – I like to make a simple no-cook sauce in the food processor with San Marzano tomatoes, garlic, oregano, olive oil, and salt. For a shortcut, store-bought works too!<br>Asiago, pecorino, and mozzarella cheese – Yes, 3 kinds! I’m obsessed with the combo of the melty mozzarella, funky Asiago, and salty pecorino. To simplify, look for a “pizza” shredded cheese blend at your grocery store.<br>Roasted red peppers – A classic veggie pizza topping! Jarred and homemade roasted peppers both work here<br>Artichoke hearts – They add tangy, briny flavor to this vegetarian pizza.<br>Red onion – Slice it thinly so that it softens and sweetens in the oven.<br>Jalapeño pepper – It’s unconventional but delicious. I love the kick of heat! For even more spice, top the pizza with red pepper flakes after it bakes.<br>And fresh basil leaves – Scatter them over the pizza when it comes out of the oven."
+        },
+        {
+            name: "Vegetable Stir Fry",
+            image: "https://static01.nyt.com/images/2017/11/29/dining/29VeganRex2/29VeganRex2-superJumbo-v3.jpg",
+            recipe: "Vegetable Stir Fry Recipe: A recipe doesn’t get much easier than this one. Don’t forget to get started on your side dish as this stir fry comes together so quickly.<br>Prep vegetables – Be sure to cut the vegetables in uniform sizes so they cook evenly.<br>sautee veggies in a large ski or wok. Add the butter, garlic and ginger.<br>Make stir fry sauce by whisking together all of the ingredients.Add the sauce to the vegetables. Simmer stir fry 3 – 4 minutes until sauce thickens, stir as needed."
+        },
+        {
+            name: "Vegetable Pasta",
+            image: "https://iheartvegetables.com/wp-content/uploads/2023/08/15-Minute-Vegetable-Pasta-5-of-8.jpg",
+            recipe: "Vegetable Pasta Recipe: This recipe has a nice flow to it. I start off by chopping the garlic and onion, then get that on the stove to cook slowly on a low heat so it becomes sweet and becomes an amazing flavour base for this quick healthy dinner.<br>In between leisurely stirring the onion every now and then, I chop the other vegetables, pop open cans and measure out the herbs and spices so it’s all ready to go into the pot by the time the onion is done.<br>Once the pasta is in, it takes a mere 10 minutes to finish cooking. Much longer than this and you’ll end up with soggy pasta, so basically, this has to be a quick 20 minutes recipe otherwise your pasta is overcooked! <br>I know I’m talking up how this is a healthy Vegetable Pasta recipe but when you watch the video, you’re going to see me toss in a nice handful of cheese that’s stirred through the pasta, then a bit more to melt on top.<br>There’s no denying cheese makes this even tastier, but for a healthier option, opt for some parmesan instead.<br>Excluding the cheese, this pasta is a mere 378 calories per serving – and it’s a generous serving size, this recipe makes a big pot full!<br>Either way, you’re going to be yscoffing this down. Added bonus: it’s great Couch Food."
+        },
+        ];
+
+        const nonVegRecipes = [{
+            name: "Chicken Curry",
+            image: "https://www.kitchensanctuary.com/wp-content/uploads/2022/09/Air-Fryer-Chicken-Curry-square-FS-36.jpg",
+            recipe: "Chicken Curry Recipe:"},
+        {
+            name: "Beef Steak",
+            image: "https://www.shutterstock.com/image-photo/grilled-beef-steaks-spices-on-260nw-439021402.jpg",
+            recipe: "Beef Steak Recipe: Grilled beef steak served with mashed potatoes. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam varius fringilla ex, eu commodo ipsum ullamcorper non."
+        },
+        {
+            name: "Fish Tacos",
+            image: "https://www.kitchensanctuary.com/wp-content/uploads/2018/06/Crispy-Fish-Tacos-with-Pico-De-Gallo-Recipe-square-FS.jpg",
+            recipe: "Fish Tacos Recipe: Fried fish served in a taco shell with salsa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam varius fringilla ex, eu commodo ipsum ullamcorper non."
+        }
+        ];
+
+        function renderRecipes(recipes) {
+            const recipeContainer = document.getElementById('recipeContainer');
+            recipeContainer.innerHTML = '';
+            recipes.forEach(recipe => {
+                const recipeCard = `
+                <div class="bg-white p-4 rounded-lg shadow-md cursor-pointer" onclick="showRecipeDetails('${recipe.name}', '${recipe.recipe}')">
+                    <img src="${recipe.image}" alt="${recipe.name}" class="mb-4 rounded-lg">
+                    <h2 class="text-lg font-semibold">${recipe.name}</h2>
+                </div>
+                `;
+                recipeContainer.insertAdjacentHTML('beforeend', recipeCard);
+            });
+        }
+
+        function showRecipeDetails(name, recipe) {
+            const recipeContainer = document.getElementById('recipeContainer');
+            const recipeDetails = document.getElementById('recipeDetails');
+            const recipeDetailContent = document.getElementById('recipeDetailContent');
+
+            recipeContainer.classList.add('hidden');
+            recipeDetails.classList.remove('hidden');
+            recipeDetailContent.innerHTML = `
+                <h2 class="text-xl font-semibold mb-4">${name}</h2>
+                <p>${recipe}</p>
+            `;
+        }
+
+        // Initial render
+        renderRecipes(vegRecipes);
+    </script>
+</body>
+
+</html>
